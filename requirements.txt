@@ -1,0 +1,20 @@
+torch>=2.0.0
+torchvision>=0.15.0
+torchinfo>=1.8.0
+torchcam>=0.3.0
+opencv-python
+Pillow
+matplotlib
+Pandas
+numpy
+scikit-learn
+tqdm
+requests
+seaborn
+streamlit
+PyYAML
+joblib
+dvc
+python-box
+ensure
+- e.
