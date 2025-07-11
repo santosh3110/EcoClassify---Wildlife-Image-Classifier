@@ -1,0 +1,32 @@
+artifacts_root: artifacts/
+
+data_ingestion:
+  root_dir: artifacts/data_ingestion
+  source_URL: https://drivendata-prod.s3.amazonaws.com/data/87/public/competition_VfIpjyh.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARVBOBDCYSN7TAHVS%2F20250711%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250711T120611Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=f0f600fee1f0fce696d5e75b2f7fa6f24ae259451662d07fca265c4a9071a965
+  local_data_file: artifacts/data_ingestion/data.zip
+  unzip_dir: artifacts/data_ingestion/extracted_data
+
+base_model:
+  root_dir: artifacts/base_model
+  model_name: CustomCNN
+  model_path: artifacts/base_model/model_customcnn.pth
+
+resnet50_model:
+  root_dir: artifacts/resnet50_model
+  model_name: Resnet50
+  model_path: artifacts/base_model/model_resnet50.pth
+
+model_training:
+  root_dir: artifacts/training
+  customcnn_trained_model_path: artifacts/training/customcnn_model.pth
+  resnet_trained_model_path: artifacts/training/resnet_model.pth
+  log_dir: artifacts/training/logs
+
+model_evaluation:
+  root_dir: artifacts/evaluation
+  report_path: artifacts/evaluation/report.json
+
+prepare_callbacks:
+  root_dir: artifacts/prepare_callbacks
+  tensorboard_root_log_dir: artifacts/prepare_callbacks/tensorboard_log_dir
+  checkpoint_model_filepath: artifacts/prepare_callbacks/checkpoint_dir/model.pth

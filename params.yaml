@@ -1,0 +1,32 @@
+# Image settings
+IMAGE_SIZE: [224, 224]
+BATCH_SIZE: 32
+RANDOM_SEED: 42
+
+# Training hyperparameters
+EPOCHS: 25
+LEARNING_RATE: 0.0001
+WEIGHT_DECAY: 0.0005
+ALPHA_L2SP: 1e-4  # For ResNet L2-SP loss
+
+# Scheduler
+SCHEDULER_PATIENCE: 2
+SCHEDULER_FACTOR: 0.5
+
+# Model choice 
+MODEL_TO_USE: "Resnet50"  # or "CustomCNN"
+
+# Label smoothing
+LABEL_SMOOTHING: 0.1
+
+# Early stopping
+EARLY_STOPPING_PATIENCE: 4
+
+# Gradient clipping
+GRAD_CLIP: 1.0
+
+# Temperature scaling for calibration
+TEMPERATURE_TUNING:
+  ENABLED: true
+  SEARCH_RANGE: [0.5, 2.0]
+  SEARCH_STEPS: 20
