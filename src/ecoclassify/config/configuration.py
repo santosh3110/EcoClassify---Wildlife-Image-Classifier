@@ -22,6 +22,12 @@ class ConfigurationManager:
 
         create_directories([Path(self.config.artifacts_root)])
 
+    def get_mlflow_config(self, stage: str) -> dict:
+        return {
+            "tracking_uri": self.config.mlflow.tracking_uri,
+            "experiment_name": self.config.experiments[stage]
+        }
+
     def get_data_ingestion_config(self) -> DataIngestionConfig:
         config = self.config.data_ingestion
         create_directories([Path(config.root_dir)])
@@ -32,15 +38,22 @@ class ConfigurationManager:
             local_data_file=Path(config.local_data_file),
             unzip_dir=Path(config.unzip_dir)
         )
-
+    
     def get_base_model_config(self) -> BaseModelConfig:
         config = self.config.base_model
-        create_directories([Path(config.root_dir)])
-
+        model_params = self.params.CUSTOMCNN
+        mlflow_cfg = self.config.mlflow
         return BaseModelConfig(
             root_dir=Path(config.root_dir),
             model_name=config.model_name,
-            model_path=Path(config.model_path)
+            model_path=Path(config.model_path),
+            num_classes=model_params.num_classes,
+            dropout=model_params.dropout,
+            hidden_units=model_params.hidden_units,
+            mlflow_tracking_uri=mlflow_cfg.tracking_uri,
+            mlflow_experiment_name=self.config.experiments.prepare_customcnn,
+            dagshub_repo_owner=mlflow_cfg.repo_owner,
+            dagshub_repo_name=mlflow_cfg.repo_name
         )
 
     def get_resnet_model_config(self) -> ResNetModelConfig:

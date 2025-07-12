@@ -16,6 +16,13 @@ class BaseModelConfig:
     root_dir: Path
     model_name: str
     model_path: Path
+    num_classes: int
+    dropout: float
+    hidden_units: int
+    mlflow_tracking_uri: str
+    mlflow_experiment_name: str
+    dagshub_repo_owner: str
+    dagshub_repo_name: str
 
 
 @dataclass

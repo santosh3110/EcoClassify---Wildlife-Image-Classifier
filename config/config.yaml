@@ -30,3 +30,13 @@ prepare_callbacks:
   root_dir: artifacts/prepare_callbacks
   tensorboard_root_log_dir: artifacts/prepare_callbacks/tensorboard_log_dir
   checkpoint_model_filepath: artifacts/prepare_callbacks/checkpoint_dir/model.pth
+
+mlflow:
+  tracking_uri: https://dagshub.com/santoshkumarguntupalli/EcoClassify---Wildlife-Image-Classifier.mlflow
+  repo_owner: santoshkumarguntupalli
+  repo_name: EcoClassify---Wildlife-Image-Classifier
+
+experiments:
+  prepare_customcnn: prepare_customcnn
+  train_resnet50: train_resnet50
+  ensemble_eval: ensemble_evaluation

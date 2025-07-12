@@ -17,4 +17,6 @@ joblib
 dvc
 python-box
 ensure
+mlflow
+dagshub
 - e.
