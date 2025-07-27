@@ -58,12 +58,17 @@ class ConfigurationManager:
 
     def get_resnet_model_config(self) -> ResNetModelConfig:
         config = self.config.resnet50_model
+        mlflow_cfg = self.config.mlflow
         create_directories([Path(config.root_dir)])
 
         return ResNetModelConfig(
             root_dir=Path(config.root_dir),
             model_name=config.model_name,
-            model_path=Path(config.model_path)
+            model_path=Path(config.model_path),
+            mlflow_tracking_uri=mlflow_cfg.tracking_uri,
+            mlflow_experiment_name=self.config.experiments.train_resnet50,
+            dagshub_repo_owner=mlflow_cfg.repo_owner,
+            dagshub_repo_name=mlflow_cfg.repo_name
         )
 
     def get_prepare_callbacks_config(self) -> PrepareCallbacksConfig:

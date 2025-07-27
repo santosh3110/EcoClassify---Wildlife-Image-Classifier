@@ -1,6 +1,7 @@
 from ecoclassify import logger
 from ecoclassify.pipeline.stage_01_data_ingestion import DataIngestionTrainingPipeline
 from ecoclassify.pipeline.stage_02_customcnn_base_model import CustomCNNTrainingPipeline
+from ecoclassify.pipeline.stage_03_resnet_50_model import Resnet50TrainingPipeline
 
 # ====================== STAGE 01 ====================== #
 STAGE_NAME = "Data Ingestion Stage"
@@ -25,3 +26,14 @@ try:
 except Exception as e:
     logger.exception(f"{STAGE_NAME} FAILED due to: {e}")
     raise e
+
+# ====================== STAGE 03 ====================== #
+STAGE_NAME = "Resnet50 Model"
+
+try:
+    logger.info(f"\n\n>>>>> STARTING {STAGE_NAME} <<<<<")
+    resnet_50_model = Resnet50TrainingPipeline()
+    resnet_50_model.main()
+    logger.info(f">>>>> COMPLETED {STAGE_NAME} <<<<< \n{'x='*30}")
+except Exception as e:
+    logger.exception(f"{STAGE_NAME} FAILED due to: {e}")

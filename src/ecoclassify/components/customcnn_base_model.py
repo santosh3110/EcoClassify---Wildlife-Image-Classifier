@@ -56,7 +56,10 @@ class PrepareCustomCNN:
         torch.save(model.state_dict(), self.config.model_path)
 
         # MLflow tracking
-        dagshub.init(self.config.dagshub_repo_owner, self.config.dagshub_repo_name, mlflow=True)
+        try:
+            dagshub.init(self.config.dagshub_repo_owner, self.config.dagshub_repo_name, mlflow=True)
+        except Exception as e:
+            print(f"⚠️ DAGsHub init failed (likely already exists): {e}")
         mlflow.set_tracking_uri(self.config.mlflow_tracking_uri)
         mlflow.set_experiment(self.config.mlflow_experiment_name)
 
