@@ -10,10 +10,11 @@ class Resnet50TrainingPipeline:
     def __init__(self):
         self.config = ConfigurationManager()
         self.resnet50_model_config = self.config.get_resnet_model_config()
+        self.train_config = self.config.get_training_config()
 
     def main(self):
-        resnet50_base_model = ResNet50Model(config=self.resnet50_model_config)
-        resnet50_base_model.run()
+        resnet50_model = ResNet50Model(config=self.resnet50_model_config, train_config=self.train_config)
+        resnet50_model.run()
 
 
 if __name__ == "__main__":
