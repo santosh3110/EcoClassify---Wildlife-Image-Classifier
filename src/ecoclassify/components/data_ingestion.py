@@ -1,6 +1,9 @@
 import os
+import pandas as pd
+import numpy as np
 import urllib.request
 import zipfile
+from sklearn.model_selection import train_test_split
 from ecoclassify.config.configuration import DataIngestionConfig
 from ecoclassify.utils.common import get_size
 from ecoclassify import logger
@@ -44,6 +47,50 @@ class DataIngestion:
         else:
             logger.info(f"Extraction directory already populated: {unzip_dir}")
 
+    def create_train_val_split(self, unzip_dir, seed=42):
+        train_df = pd.read_csv(os.path.join(unzip_dir, "train_features.csv"), index_col="id")
+        label_df = pd.read_csv(os.path.join(unzip_dir, "train_labels.csv"), index_col="id")
+
+        # Convert one-hot to class label string
+        label_df["label"] = label_df.idxmax(axis=1)
+        df = train_df.copy()
+        df["label_str"] = label_df["label"]
+
+        # 🔁 Encode class strings to integers
+        class_names = sorted(df["label_str"].unique())
+        class_to_idx = {name: idx for idx, name in enumerate(class_names)}
+        df["label"] = df["label_str"].map(class_to_idx)
+
+        # 💾 Save label mapping for future use
+        label_map_path = os.path.join(unzip_dir, "label_mapping.json")
+        with open(label_map_path, "w") as f:
+            import json
+            json.dump(class_to_idx, f, indent=4)
+
+        # Add filepath (absolute or relative to root)
+        df["filepath"] = df["filepath"].apply(lambda x: os.path.join(unzip_dir, x))
+
+        # 🔪 Train/Val split
+        train_df, val_df = train_test_split(
+            df,
+            test_size=0.2,
+            stratify=df["label"],
+            random_state=seed
+        )
+
+        train_df["split"] = "train"
+        val_df["split"] = "val"
+
+        combined_df = pd.concat([train_df, val_df])
+        combined_df.to_csv(os.path.join(unzip_dir, "train_split.csv"))
+
+        print("✅ Split CSV saved.")
+        print(f"📦 Label mapping saved to: {label_map_path}")
+
+
+
+
     def run(self):
         self.download_file()
         self.extract_zip_file()
+        self.create_train_val_split(self.config.unzip_dir)

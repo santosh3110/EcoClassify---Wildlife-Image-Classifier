@@ -13,8 +13,7 @@ class DataIngestionTrainingPipeline:
 
     def main(self):
         ingestion = DataIngestion(config=self.data_ingestion_config)
-        ingestion.download_file()
-        ingestion.extract_zip_file()
+        ingestion.run()
 
 
 if __name__ == "__main__":
