@@ -19,7 +19,7 @@ SCHEDULER_PATIENCE: 2
 SCHEDULER_FACTOR: 0.5
 
 # Model choice 
-MODEL_TO_USE: "CustomCNN"
+MODEL_TO_USE: "Resnet50"
 
 # Label smoothing
 LABEL_SMOOTHING: 0.1

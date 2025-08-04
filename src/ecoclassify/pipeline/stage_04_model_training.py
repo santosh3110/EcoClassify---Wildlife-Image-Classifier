@@ -52,8 +52,7 @@ class ModelTrainingPipeline:
             experiment = "prepare_customcnn"
         else:
             model = ResNet50Model(
-                config=self.config.get_resnet_model_config(),
-                train_config=self.train_config
+                config=self.config.get_resnet_model_config()
             ).get_model()
             model_path = self.train_config.resnet_trained_model_path
             experiment = "train_resnet50"
