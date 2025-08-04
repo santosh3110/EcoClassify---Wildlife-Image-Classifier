@@ -61,6 +61,12 @@ class TrainingConfig:
     scheduler_patience: int
     scheduler_factor: float
     model_to_use: str
+    dropout: float
+    hidden_units: int
+    num_classes: int 
+    mlflow_tracking_uri: str
+    dagshub_repo_owner: str
+    dagshub_repo_name: str
 
 
 @dataclass

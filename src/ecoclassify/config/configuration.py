@@ -53,7 +53,7 @@ class ConfigurationManager:
             mlflow_tracking_uri=mlflow_cfg.tracking_uri,
             mlflow_experiment_name=self.config.experiments.prepare_customcnn,
             dagshub_repo_owner=mlflow_cfg.repo_owner,
-            dagshub_repo_name=mlflow_cfg.repo_name
+            dagshub_repo_name=mlflow_cfg.repo_name,
         )
 
     def get_resnet_model_config(self) -> ResNetModelConfig:
@@ -88,6 +88,7 @@ class ConfigurationManager:
     def get_training_config(self) -> TrainingConfig:
         config = self.config.model_training
         params = self.params
+        mlflow_cfg = self.config.mlflow
 
         create_directories([Path(config.root_dir), Path(config.log_dir)])
 
@@ -107,7 +108,13 @@ class ConfigurationManager:
             early_stopping_patience=params.EARLY_STOPPING_PATIENCE,
             scheduler_patience=params.SCHEDULER_PATIENCE,
             scheduler_factor=params.SCHEDULER_FACTOR,
-            model_to_use=params.MODEL_TO_USE
+            model_to_use=params.MODEL_TO_USE,
+            dropout=params.CUSTOMCNN.dropout,
+            hidden_units=params.CUSTOMCNN.hidden_units,
+            num_classes=params.CUSTOMCNN.num_classes,
+            mlflow_tracking_uri=mlflow_cfg.tracking_uri,
+            dagshub_repo_owner=mlflow_cfg.repo_owner,
+            dagshub_repo_name=mlflow_cfg.repo_name
         )
 
     def get_evaluation_config(self) -> EvaluationConfig:

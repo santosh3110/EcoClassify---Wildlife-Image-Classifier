@@ -10,9 +10,8 @@ from torchinfo import summary
 
 
 class ResNet50Model:
-    def __init__(self, config: ResNetModelConfig, train_config: TrainingConfig):
+    def __init__(self, config: ResNetModelConfig):
         self.config = config
-        self.train_config = train_config
 
     def get_model(self):
         logger.info("⏬ Loading pretrained ResNet50...")

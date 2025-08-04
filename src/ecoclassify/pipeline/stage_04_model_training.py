@@ -38,7 +38,7 @@ class ModelTrainingPipeline:
             train_df=train_df,
             val_df=val_df,
             batch_size=self.train_config.batch_size,
-            config=self.train_config
+            log_dir=self.train_config.log_dir
         )
 
         # Model selection
