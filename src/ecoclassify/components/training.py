@@ -158,7 +158,7 @@ class ModelTrainer:
 
                 # =================== Save Artifacts to Drive ===================
                 try:
-                    drive_path = "/content/drive/MyDrive/EcoClassifyProject/EcoClassify---Wildlife-Image-Classifier/artifacts"
+                    drive_path = "/content/drive/MyDrive/EcoClassify---Wildlife-Image-Classifier/artifacts"
                     local_path = "./artifacts"
                     shutil.copytree(local_path, drive_path, dirs_exist_ok=True)
                     logger.info("🛟 Artifacts backed up to Google Drive")
