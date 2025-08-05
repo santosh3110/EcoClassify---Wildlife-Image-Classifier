@@ -73,16 +73,20 @@ class ConfigurationManager:
 
     def get_prepare_callbacks_config(self) -> PrepareCallbacksConfig:
         config = self.config.prepare_callbacks
+        model_to_use = self.params.MODEL_TO_USE.lower()
+
+        checkpoint_path = (
+        config.customcnn_checkpoint_path if model_to_use == "CustomCNN"
+        else config.resnet50_checkpoint_path
+    )
         create_directories([
             Path(config.root_dir),
-            Path(config.tensorboard_root_log_dir),
-            Path(Path(config.checkpoint_model_filepath).parent)
+            Path(Path(checkpoint_path).parent)
         ])
 
         return PrepareCallbacksConfig(
             root_dir=Path(config.root_dir),
-            tensorboard_root_log_dir=Path(config.tensorboard_root_log_dir),
-            checkpoint_model_filepath=Path(config.checkpoint_model_filepath)
+            checkpoint_model_filepath=Path(checkpoint_path)
         )
 
     def get_training_config(self) -> TrainingConfig:
