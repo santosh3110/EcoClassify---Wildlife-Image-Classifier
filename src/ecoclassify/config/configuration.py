@@ -76,7 +76,7 @@ class ConfigurationManager:
         model_to_use = self.params.MODEL_TO_USE.lower()
 
         checkpoint_path = (
-        config.customcnn_checkpoint_path if model_to_use == "CustomCNN"
+        config.customcnn_checkpoint_path if model_to_use == "customcnn"
         else config.resnet50_checkpoint_path
     )
         create_directories([

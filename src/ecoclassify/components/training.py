@@ -9,6 +9,7 @@ from ecoclassify.config.configuration import TrainingConfig, PrepareCallbacksCon
 from ecoclassify import logger
 import mlflow
 import dagshub
+import shutil
 
 
 class ModelTrainer:
@@ -154,6 +155,15 @@ class ModelTrainer:
                 }, self.checkpoint_path)
 
                 logger.info(f"💾 Checkpoint saved at {self.checkpoint_path}")
+
+                # =================== Save Artifacts to Drive ===================
+                try:
+                    drive_path = "/content/drive/MyDrive/EcoClassifyProject/EcoClassify---Wildlife-Image-Classifier/artifacts"
+                    local_path = "./artifacts"
+                    shutil.copytree(local_path, drive_path, dirs_exist_ok=True)
+                    logger.info("🛟 Artifacts backed up to Google Drive")
+                except Exception as e:
+                    logger.warning(f"⚠️ Failed to backup to Drive: {e}")
 
         self.model.load_state_dict(best_model_wts)
         return self.model
