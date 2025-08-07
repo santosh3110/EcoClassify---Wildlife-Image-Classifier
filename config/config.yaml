@@ -2,7 +2,7 @@ artifacts_root: artifacts/
 
 data_ingestion:
   root_dir: artifacts/data_ingestion
-  source_URL: https://drivendata-prod.s3.amazonaws.com/data/87/public/competition_VfIpjyh.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARVBOBDCYSN7TAHVS%2F20250806%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20250806T131618Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=22f2da609f500e907f4e05c173d594a84f2c9a094c8a82f9d42dc16e1f5f24e1
+  source_URL: https://drive.google.com/file/d/1ZCbea01tiDEFWjZTI0U9LjxibIDqaKOB/view?usp=drive_link
   local_data_file: artifacts/data_ingestion/data.zip
   unzip_dir: artifacts/data_ingestion/extracted_data
 
