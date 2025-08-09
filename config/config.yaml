@@ -24,7 +24,12 @@ model_training:
 
 model_evaluation:
   root_dir: artifacts/evaluation
-  report_path: artifacts/evaluation/report.json
+  customcnn:
+    report_path: artifacts/evaluation/customcnn/report.json
+    conf_matrix_path: artifacts/evaluation/customcnn/confusion_matrix.png
+  resnet50:
+    report_path: artifacts/evaluation/resnet50/report.json
+    conf_matrix_path: artifacts/evaluation/resnet50/confusion_matrix.png
 
 prepare_callbacks:
   root_dir: artifacts/prepare_callbacks

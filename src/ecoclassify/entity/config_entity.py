@@ -72,6 +72,10 @@ class TrainingConfig:
 class EvaluationConfig:
     root_dir: Path
     report_path: Path
+    model_to_use: str
+    confusion_matrix_path: Path
+    class_names: List[str]
+    mlflow_tracking_uri: str
 
 
 @dataclass

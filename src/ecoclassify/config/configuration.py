@@ -122,12 +122,20 @@ class ConfigurationManager:
         )
 
     def get_evaluation_config(self) -> EvaluationConfig:
-        config = self.config.model_evaluation
-        create_directories([Path(config.root_dir)])
+        model_to_use = self.params.MODEL_TO_USE.lower()
+        eval_config = self.config.model_evaluation[model_to_use]
+        class_names = self.params.CLASS_NAMES
+        mlflow_cfg = self.config.mlflow
+
+        create_directories([Path(self.config.model_evaluation.root_dir) / model_to_use])
 
         return EvaluationConfig(
-            root_dir=Path(config.root_dir),
-            report_path=Path(config.report_path)
+            root_dir=Path(self.config.model_evaluation.root_dir),
+            report_path=Path(eval_config["report_path"]),
+            confusion_matrix_path=Path(eval_config["conf_matrix_path"]),
+            class_names=class_names,
+            mlflow_tracking_uri=mlflow_cfg.tracking_uri,
+            model_to_use=model_to_use
         )
 
     def get_temperature_tuning_config(self) -> TemperatureTuningConfig:

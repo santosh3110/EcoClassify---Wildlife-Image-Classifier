@@ -18,6 +18,7 @@ class ModelEvaluationPipeline:
         self.config = ConfigurationManager()
         self.eval_config = self.config.get_evaluation_config()
         self.train_config = self.config.get_training_config()
+        self.temp_config = self.config.get_temperature_tuning_config()
         self.data_ingestion_config = self.config.get_data_ingestion_config()
 
     def main(self):
@@ -29,10 +30,11 @@ class ModelEvaluationPipeline:
         labels_df = pd.read_csv(labels_path, index_col="id")
         df["label"] = labels_df.loc[df.index].values.argmax(1)
 
+        train_df = df[df["split"] == "train"]
         val_df = df[df["split"] == "val"]
 
         _, val_loader = get_dataloaders(
-            train_df=None,  # not needed
+            train_df= train_df,
             val_df=val_df,
             batch_size=self.train_config.batch_size,
             log_dir=self.train_config.log_dir
@@ -53,7 +55,8 @@ class ModelEvaluationPipeline:
         evaluator = ModelEvaluator(
             model=model,
             dataloader=val_loader,
-            config=self.eval_config
+            config=self.eval_config,
+            temp_config=self.temp_config
         )
 
         report = evaluator.evaluate()
