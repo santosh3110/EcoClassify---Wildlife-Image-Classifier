@@ -17,7 +17,12 @@ class ModelEvaluator:
         self.config = config
         self.temp_config = temp_config
         self.device = device or torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        self.class_names = config.class_names
+
+        with open(self.config.label_mapping_path, "r") as f:
+            label_map = json.load(f)
+            
+        idx_to_class = {v: k for k, v in label_map.items()}
+        self.class_names = [idx_to_class[i] for i in range(len(idx_to_class))]
         
 
     def _get_logits_labels(self):

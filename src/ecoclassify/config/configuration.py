@@ -8,6 +8,7 @@ from ecoclassify.entity.config_entity import (
     TrainingConfig,
     EvaluationConfig,
     TemperatureTuningConfig,
+    ExplanationConfig
 )
 from pathlib import Path
 
@@ -124,18 +125,17 @@ class ConfigurationManager:
     def get_evaluation_config(self) -> EvaluationConfig:
         model_to_use = self.params.MODEL_TO_USE.lower()
         eval_config = self.config.model_evaluation[model_to_use]
-        class_names = self.params.CLASS_NAMES
         mlflow_cfg = self.config.mlflow
 
-        create_directories([Path(self.config.model_evaluation.root_dir) / model_to_use])
+        create_directories([Path(eval_config.root_dir) / model_to_use])
 
         return EvaluationConfig(
-            root_dir=Path(self.config.model_evaluation.root_dir),
-            report_path=Path(eval_config["report_path"]),
-            confusion_matrix_path=Path(eval_config["conf_matrix_path"]),
-            class_names=class_names,
+            root_dir=Path(eval_config.root_dir),
+            report_path=Path(eval_config.report_path),
+            confusion_matrix_path=Path(eval_config.conf_matrix_path),
             mlflow_tracking_uri=mlflow_cfg.tracking_uri,
-            model_to_use=model_to_use
+            model_to_use=model_to_use,
+            label_mapping_path=Path(eval_config.label_mapping_path)
         )
 
     def get_temperature_tuning_config(self) -> TemperatureTuningConfig:
@@ -145,4 +145,19 @@ class ConfigurationManager:
             enabled=params.ENABLED,
             search_range=params.SEARCH_RANGE,
             search_steps=params.SEARCH_STEPS
+        )
+
+    def get_explanation_config(self) -> ExplanationConfig:
+        config = self.config.explanation
+        params = self.params.GRADCAM
+
+        return ExplanationConfig(
+            root_dir=Path(config.root_dir),
+            model_weights=Path(config.model_weights),
+            base_model_name=config.base_model_name,
+            train_split_csv=Path(config.train_split_csv),
+            label_mapping_path=Path(config.label_mapping_path),
+            mean_std_path=Path(config.mean_std_path),
+            gradcam_target_layer=params.gradcam_target_layer,
+            num_images=params.num_images
         )

@@ -74,7 +74,7 @@ class EvaluationConfig:
     report_path: Path
     model_to_use: str
     confusion_matrix_path: Path
-    class_names: List[str]
+    label_mapping_path: Path
     mlflow_tracking_uri: str
 
 
@@ -83,3 +83,14 @@ class TemperatureTuningConfig:
     enabled: bool
     search_range: List[float]
     search_steps: int
+
+@dataclass
+class ExplanationConfig:
+    root_dir: Path
+    model_weights: Path
+    base_model_name: str
+    train_split_csv: Path
+    label_mapping_path: Path
+    mean_std_path: Path
+    gradcam_target_layer: str
+    num_images: int

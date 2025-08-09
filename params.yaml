@@ -40,5 +40,6 @@ EVALUATION:
   TOP_K: 3
   USE_TEST_SET: false
 
-CLASS_NAMES: ["antelope_duiker", "bird", "blank", "civet_genet", "hog", "leopard", "monkey_prosimian", "rodent"]
-
+GRADCAM:
+  gradcam_target_layer: "layer4" 
+  num_images: 20

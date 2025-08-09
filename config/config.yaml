@@ -23,13 +23,16 @@ model_training:
   log_dir: artifacts/training/logs
 
 model_evaluation:
-  root_dir: artifacts/evaluation
   customcnn:
+    root_dir: artifacts/evaluation
     report_path: artifacts/evaluation/customcnn/report.json
     conf_matrix_path: artifacts/evaluation/customcnn/confusion_matrix.png
+    label_mapping_path: artifacts/data_ingestion/extracted_data/label_mapping.json
   resnet50:
+    root_dir: artifacts/evaluation
     report_path: artifacts/evaluation/resnet50/report.json
     conf_matrix_path: artifacts/evaluation/resnet50/confusion_matrix.png
+    label_mapping_path: artifacts/data_ingestion/extracted_data/label_mapping.json
 
 prepare_callbacks:
   root_dir: artifacts/prepare_callbacks
@@ -45,3 +48,11 @@ experiments:
   prepare_customcnn: prepare_customcnn
   train_resnet50: train_resnet50
   ensemble_eval: ensemble_evaluation
+
+explanation:
+  root_dir: artifacts/explanations
+  model_weights: artifacts/training/resnet_model.pth
+  base_model_name: resnet50
+  train_split_csv: artifacts/data_ingestion/extracted_data/train_split.csv
+  label_mapping_path: artifacts/data_ingestion/extracted_data/label_mapping.json
+  mean_std_path: artifacts/training/logs/mean_std.json
