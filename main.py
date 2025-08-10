@@ -78,3 +78,15 @@ try:
 except Exception as e:
     logger.exception(f"{STAGE_NAME} FAILED due to: {e}")
     raise e
+
+# ====================== STAGE 07 ====================== #
+STAGE_NAME = "Batch Inference"  
+try:
+    logger.info(f"\n\n>>>>> STARTING {STAGE_NAME} <<<<<")
+    from ecoclassify.pipeline.stage_07_batch_inference import BatchInferencePipeline
+    batch_inference_pipeline = BatchInferencePipeline()
+    batch_inference_pipeline.main()
+    logger.info(f">>>>> COMPLETED {STAGE_NAME} <<<<< \n{'x='*30}")
+except Exception as e:
+    logger.exception(f"{STAGE_NAME} FAILED due to: {e}")
+    raise e

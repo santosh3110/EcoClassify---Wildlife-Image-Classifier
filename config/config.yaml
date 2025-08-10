@@ -56,3 +56,12 @@ explanation:
   train_split_csv: artifacts/data_ingestion/extracted_data/train_split.csv
   label_mapping_path: artifacts/data_ingestion/extracted_data/label_mapping.json
   mean_std_path: artifacts/training/logs/mean_std.json
+
+batch_inference:
+  root_dir: artifacts/batch_inference
+  model_path: artifacts/training/resnet_model.pth
+  label_mapping_path: artifacts/data_ingestion/extracted_data/label_mapping.json
+  mean_std_path: artifacts/training/logs/mean_std.json
+  test_images_root: artifacts/data_ingestion/extracted_data
+  test_csv: artifacts/data_ingestion/extracted_data/test_features.csv
+  log_dir: artifacts/batch_inference/logs

@@ -8,7 +8,8 @@ from ecoclassify.entity.config_entity import (
     TrainingConfig,
     EvaluationConfig,
     TemperatureTuningConfig,
-    ExplanationConfig
+    ExplanationConfig,
+    BatchInferenceConfig
 )
 from pathlib import Path
 
@@ -160,4 +161,20 @@ class ConfigurationManager:
             mean_std_path=Path(config.mean_std_path),
             gradcam_target_layer=params.gradcam_target_layer,
             num_images=params.num_images
+        )
+    
+    def get_batch_inference_config(self) -> BatchInferenceConfig:
+        config = self.config.batch_inference
+        params = self.params.BATCH_INFERENCE
+
+        return BatchInferenceConfig(
+            root_dir=Path(config.root_dir),
+            model_path=Path(config.model_path),
+            label_mapping_path=Path(config.label_mapping_path),
+            mean_std_path=Path(config.mean_std_path),
+            test_csv=Path(config.test_csv),
+            log_dir=Path(config.log_dir),
+            batch_size=params.batch_size,
+            num_workers=params.num_workers,
+            top_k=params.top_k
         )

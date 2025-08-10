@@ -94,3 +94,15 @@ class ExplanationConfig:
     mean_std_path: Path
     gradcam_target_layer: str
     num_images: int
+
+@dataclass
+class BatchInferenceConfig:
+    root_dir: Path
+    model_path: Path
+    label_mapping_path: Path
+    mean_std_path: Path 
+    test_csv: Path
+    log_dir: Path
+    batch_size: int
+    num_workers: int
+    top_k: int

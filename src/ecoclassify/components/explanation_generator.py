@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import torchvision
-from torchvision import transforms
+from torchvision import models, transforms
 import pandas as pd
 import json
 import numpy as np
@@ -18,8 +18,8 @@ class ExplanationGenerator:
 
     def load_model(self):
         logger.info("🔄 Loading ResNet50 architecture...")
-        model = torchvision.models.resnet50(weights=None)
-        model.fc = nn.Linear(model.fc.in_features, 8)  # 8 classes fixed
+        model = models.resnet50(weights=None)
+        model.fc = nn.Linear(model.fc.in_features, 8)  
         model.load_state_dict(torch.load(self.config.model_weights, map_location="cpu"))
         model.eval()
         return model

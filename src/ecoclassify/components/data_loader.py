@@ -23,10 +23,11 @@ class WildlifeDataset(Dataset):
     def __getitem__(self, idx):
         row = self.dataframe.iloc[idx]
         image = Image.open(row["filepath"]).convert("RGB")
-        label = int(row["label"])
+        label = int(row["label"]) if "label" in row else -1
+        img_id = os.path.splitext(os.path.basename(row["filepath"]))[0]
         if self.transform:
             image = self.transform(image)
-        return image, label
+        return image, label, img_id
 
 def compute_mean_std(df: pd.DataFrame) -> tuple:
     logger.info("📊 Computing mean and std for training images...")
