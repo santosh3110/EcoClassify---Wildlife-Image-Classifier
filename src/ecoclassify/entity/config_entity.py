@@ -106,3 +106,25 @@ class BatchInferenceConfig:
     batch_size: int
     num_workers: int
     top_k: int
+
+@dataclass
+class FineTuningConfig:
+    train_dir: Path
+    val_dir: Path
+    model_path: Path
+    label_mapping_path: Path
+    output_model_path: Path
+    output_label_mapping_path: Path
+    batch_size: int
+    epochs: int
+    unfreeze_backbone: bool
+    patience: int
+    scheduler_patience: int
+    scheduler_factor: float
+    learning_rate: float
+    crop_size: int
+    flip: bool
+    brightness: float
+    contrast: float
+    saturation: float
+    hue: float

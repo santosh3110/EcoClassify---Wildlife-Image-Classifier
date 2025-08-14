@@ -9,7 +9,8 @@ from ecoclassify.entity.config_entity import (
     EvaluationConfig,
     TemperatureTuningConfig,
     ExplanationConfig,
-    BatchInferenceConfig
+    BatchInferenceConfig,
+    FineTuningConfig
 )
 from pathlib import Path
 
@@ -177,4 +178,47 @@ class ConfigurationManager:
             batch_size=params.batch_size,
             num_workers=params.num_workers,
             top_k=params.top_k
+        )
+    
+    def get_fine_tuning_config(
+        self,
+        train_dir,
+        val_dir,
+        batch_size=None,
+        epochs=None,
+        unfreeze_backbone=None,
+        patience=None,
+        scheduler_patience=None,
+        scheduler_factor=None,
+        learning_rate=None,
+        crop_size=None,
+        flip=None,
+        brightness=None,
+        contrast=None,
+        saturation=None,
+        hue=None
+    ):
+        config = self.config.fine_tuning
+        params = self.params.FINE_TUNING
+
+        return FineTuningConfig(
+            train_dir=train_dir,
+            val_dir=val_dir,
+            model_path=config.model_path,
+            label_mapping_path=config.label_mapping_path,
+            output_model_path=config.output_model_path,
+            output_label_mapping_path=config.output_label_mapping_path,
+            batch_size=batch_size if batch_size is not None else params.batch_size,
+            unfreeze_backbone=unfreeze_backbone if unfreeze_backbone is not None else params.unfreeze_backbone,
+            epochs=epochs if epochs is not None else params.epochs,
+            patience=patience if patience is not None else params.patience,
+            scheduler_patience=scheduler_patience if scheduler_patience is not None else params.scheduler_patience,
+            scheduler_factor=scheduler_factor if scheduler_factor is not None else params.scheduler_factor,
+            learning_rate=learning_rate if learning_rate is not None else params.learning_rate,
+            crop_size=crop_size if crop_size is not None else params.crop_size,
+            flip=flip if flip is not None else params.flip,
+            brightness=brightness if brightness is not None else params.brightness,
+            contrast=contrast if contrast is not None else params.contrast,
+            saturation=saturation if saturation is not None else params.saturation,
+            hue=hue if hue is not None else params.hue
         )

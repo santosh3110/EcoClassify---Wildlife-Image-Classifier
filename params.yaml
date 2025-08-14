@@ -48,3 +48,18 @@ BATCH_INFERENCE:
   batch_size: 32
   num_workers: 2
   top_k: 3
+
+FINE_TUNING:
+  batch_size: 32
+  epochs: 5
+  unfreeze_backbone: false
+  patience: 5
+  learning_rate: 0.001
+  scheduler_patience: 2
+  scheduler_factor: 0.5
+  crop_size: 224
+  flip: true
+  brightness: 0.2
+  contrast: 0.2
+  saturation: 0.2
+  hue: 0.1

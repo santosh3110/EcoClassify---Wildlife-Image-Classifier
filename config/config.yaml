@@ -65,3 +65,9 @@ batch_inference:
   test_images_root: artifacts/data_ingestion/extracted_data
   test_csv: artifacts/data_ingestion/extracted_data/test_features.csv
   log_dir: artifacts/batch_inference/logs
+
+fine_tuning:
+  model_path: artifacts/training/resnet_model.pth
+  label_mapping_path: artifacts/data_ingestion/extracted_data/label_mapping.json
+  output_model_path: artifacts/streamlit_outputs/fine_tuned_model.pth
+  output_label_mapping_path: artifacts/streamlit_outputs/label_mapping.json
