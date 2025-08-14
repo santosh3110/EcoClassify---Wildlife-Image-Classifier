@@ -1,11 +1,8 @@
-import os
+import os 
 import json
 import tempfile
 import pandas as pd
 import torch
-import shutil
-import seaborn as sns
-import matplotlib.pyplot as plt
 import zipfile
 import streamlit as st
 from PIL import Image
