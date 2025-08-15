@@ -20,4 +20,4 @@ ensure
 mlflow
 dagshub
 dotenv
-- e.
+-e .
