@@ -37,8 +37,12 @@ def load_model_and_transforms():
     # Load label mapping
     with open(CONFIG["label_mapping_path"], "r") as f:
         label_map = json.load(f)
-    idx_to_class = {int(k): v for k, v in label_map.items()}
-
+    if all(str(k).isdigit() for k in label_map.keys()):
+        # Keys are numeric
+        idx_to_class = {int(k): v for k, v in label_map.items()}
+    else:
+        # Keys are class names, values are numeric IDs
+        idx_to_class = {v: k for k, v in label_map.items()}
 
     # Load mean/std
     stats = load_json(Path(CONFIG["mean_std_path"]))  # FIXED: ensure Path type
