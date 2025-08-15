@@ -19,5 +19,5 @@ python-box
 ensure
 mlflow
 dagshub
-dotenv
--e .
+python-dotenv
+# -e .
