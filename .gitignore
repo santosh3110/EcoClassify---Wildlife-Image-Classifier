@@ -206,5 +206,24 @@ marimo/_static/
 marimo/_lsp/
 __marimo__/
 
-artifacts
+artifacts/data_ingestion/extracted_data/test_features
+artifacts/data_ingestion/extracted_data/train_features
+artifacts/data_ingestion/extracted_data/benchmark.ipynb
+artifacts/data_ingestion/extracted_data/test_features.csv
+artifacts/data_ingestion/extracted_data/train_features.csv
+artifacts/data_ingestion/extracted_data/test_features.zip
+artifacts/data_ingestion/extracted_data/submission_format.csv
+artifacts/data_ingestion/extracted_data/train_labels.csv
+artifacts/data_ingestion/extracted_data/train_split.csv
+artifacts/data_ingestion/data.zip
+artifacts/base_model
+artifacts/resnet50_model
+artifacts/prepare_callbacks
+artifacts/streamlit_outputs
+artifacts/training/customcnn_model.pth
+
+
+
+
+
 
