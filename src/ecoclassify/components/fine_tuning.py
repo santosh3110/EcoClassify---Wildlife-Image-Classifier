@@ -96,7 +96,12 @@ class FineTuner:
             original_map = json.load(f)
 
         # idx->name mapping may be saved with string keys, normalize:
-        original_idx_to_name = {int(k): v for k, v in original_map.items()}
+        if all(str(k).isdigit() for k in original_map.keys()):
+            # Keys are numeric
+            original_idx_to_name = {int(k): v for k, v in original_map.items()}
+        else:
+            # Keys are class names, values are numeric IDs
+            original_idx_to_name = {v: k for k, v in original_map.items()}
         original_classes_ordered = [original_idx_to_name[i] for i in sorted(original_idx_to_name.keys())]
 
         if sorted(dataset_classes) != sorted(original_classes_ordered):

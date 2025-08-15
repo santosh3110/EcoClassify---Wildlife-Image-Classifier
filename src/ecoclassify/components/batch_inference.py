@@ -17,7 +17,13 @@ class BatchInference:
             label_map = json.load(f)
 
         # Ensure correct index → name mapping
-        self.idx_to_class = {int(k): v for k, v in label_map.items()}
+        if all(str(k).isdigit() for k in label_map.keys()):
+            # Keys are numeric
+            self.idx_to_class = {int(k): v for k, v in label_map.items()}
+        else:
+            # Keys are class names, values are numeric IDs
+            self.idx_to_class = {v: k for k, v in label_map.items()}
+
         self.class_names = [self.idx_to_class[i] for i in sorted(self.idx_to_class.keys())]
 
     def load_model(self):
