@@ -1,5 +1,6 @@
 import os 
 import json
+import sys
 import tempfile
 import pandas as pd
 import torch
@@ -9,6 +10,8 @@ from PIL import Image
 from torchvision import models, transforms
 import torch.nn as nn
 from pathlib import Path
+
+sys.path.append(os.path.join(os.path.dirname(__file__), "src"))
 from ecoclassify import logger
 from ecoclassify.config.configuration import ConfigurationManager
 from ecoclassify.components.batch_inference import BatchInference
