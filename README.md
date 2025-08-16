@@ -306,8 +306,8 @@ Tabs available:
 
 - Confusion matrices:
  
-  | CustomCNN confusion matrix| ResNet50 confusion matrix |
-|---------------------------|--------------------------|
+| CustomCNN confusion matrix| ResNet50 confusion matrix |
+|---------------------------|---------------------------|
 | ![customcnn_confusion](artifacts/evaluation/customcnn/confusion_matrix.png) | ![resnet50_confusion](artifacts/evaluation/resnet50/confusion_matrix.png)|  
 
 ---
