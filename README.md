@@ -20,8 +20,7 @@ pinned: false
 EcoClassify is an **end-to-end computer vision project** that classifies camera trap images into wildlife species using **transfer learning (ResNet50).**  
 It includes **model explainability (Grad-CAM)**, **batch inference**, **fine-tuning via Streamlit UI**, and **MLflow/DagsHub integration** for experiment tracking. It was born out of the need to help researchers, educators, and nature lovers quickly identify species without needing to be a machine learning wizard. This project was developed as part of my internship at **Euron**, with heartfelt thanks to **Sudhanshu Kumar, Director of Euron,** for his guidance and mentorship.
 
-🔗 **Live Demo on Streamlit Cloud**:  
-[![Streamlit App](https://img.shields.io/badge/Launch%20App-Streamlit-brightgreen?logo=streamlit)](https://ecoclassify---wildlife-image-classifier-ojyez7lpcmvjx25vmxr95c.streamlit.app/)
+🔗 **Live Demo on Streamlit Cloud**: [![Streamlit App](https://img.shields.io/badge/Launch%20App-Streamlit-brightgreen?logo=streamlit)](https://ecoclassify---wildlife-image-classifier-ojyez7lpcmvjx25vmxr95c.streamlit.app/)
 
 🔗 **Live Demo on Hugging Face**: [![Hugging Face Spaces](https://img.shields.io/badge/Launch%20App-HuggingFace-orange?logo=huggingface)](https://huggingface.co/spaces/santosh3110/Ecoclassify-Wildlife_Classifier)
 
@@ -64,11 +63,7 @@ It includes **model explainability (Grad-CAM)**, **batch inference**, **fine-tun
 Camera traps capture **millions of images** in wildlife conservation projects. Manual classification is slow, error-prone, and not scalable.  
 
 **EcoClassify** provides:  
-<<<<<<< HEAD
 - 🔬 Automated **species classification** (7 classes + Blank).  
-=======
-- 🔬 Automated **species classification** (7+ classes + Blank).  
->>>>>>> 18eafb2 (updated README.md)
 - 🖼️ **Explainability dashboard** (Grad-CAM heatmaps).  
 - ⚡ **Batch inference** for CSV/ZIP datasets.  
 - 🎛️ **Fine-tuning** interface for custom datasets.  
@@ -196,15 +191,9 @@ EcoClassify---Wildlife-Image-Classifier/
 
 ## 📚 Dataset  
 
-<<<<<<< HEAD
 - **Source**: Conser-vision Practice Area: Image Classification by drivendata.org
 - **Provided by**:  
   *The Pan African Programme: The Cultured Chimpanzee, Wild Chimpanzee Foundation, DrivenData. (2022). Conser-vision Practice Area: Image Classification. Retrieved [July 12 2025] from https://www.drivendata.org/competitions/87/competition-image-classification-wildlife-conservation/.*  
-=======
-- **Source**: [DrivenData – Wildlife Camera Traps](https://www.drivendata.org/competitions/87/competition-image-classification-wildlife-conservation/)  
-- **Provided by**:  
-  *Pan African Programme: The Cultured Chimpanzee, Wild Chimpanzee Foundation*  
->>>>>>> 18eafb2 (updated README.md)
 
 ---
 
@@ -262,32 +251,12 @@ Tabs available:
   - **CustomCNN** (100 epochs)  
   - **ResNet50 (transfer learning)** (50 epochs)  
 
-<<<<<<< HEAD
-=======
-### Results Summary  
-
-| Model      | Dataset     | Accuracy | Notes                     |
-|------------|-------------|----------|---------------------------|
-| CustomCNN  | Wildlife-8  | 69.8%    | Baseline model, 100 epochs|
-| ResNet50   | Wildlife-8  | 89.2%    | Fine-tuned, 50 epochs     |
-
-  - Training visuals:
-    - CustomCNN Training Chart: ![customcnn_training.png](customcnn_training.png)
-    - ResNet50 Training Chart: ![resnet50_training.png](resnet50_training.png)
-  - **Hyperparameters** are controlled via the params.yaml file (no hard-coded values)
-
-- Results tracked via **MLflow & DagsHub**  
-  - Dagshub Experiments: https://dagshub.com/santoshkumarguntupalli/EcoClassify---Wildlife-Image-Classifier/experiments
-  - MLflow (Dagshub): https://dagshub.com/santoshkumarguntupalli/EcoClassify---Wildlife-Image-Classifier.mlflow/#/experiments/0?searchFilter=&orderByKey=attributes.start_time&orderByAsc=false&startTime=ALL&lifecycleFilter=Active&modelVersionFilter=All+Runs&datasetsFilter=W10%3D
-
->>>>>>> 18eafb2 (updated README.md)
 - Evaluation scope:
   - Confusion matrix
   - Classification report
   - Calibration metrics (temperature scaling)
   - **Artifacts** stored under artifacts/
 
-<<<<<<< HEAD
 ### Results Summary
 
 | Model     | Temperature | Uncalibrated Accuracy | Calibrated Accuracy | Uncalibrated Precision | Calibrated Precision | Uncalibrated Recall | Calibrated Recall | Uncalibrated F1 | Calibrated F1 | Uncalibrated Log-Loss | Calibrated Log-Loss |
@@ -341,49 +310,6 @@ Tabs available:
 | CustomCNN confusion matrix| ResNet50 confusion matrix |
 |---------------------------|---------------------------|
 | ![customcnn_confusion](artifacts/evaluation/customcnn/confusion_matrix.png) | ![resnet50_confusion](artifacts/evaluation/resnet50/confusion_matrix.png)|  
-=======
-- Results summary (from end-to-end evaluation JSON reports)
-  - CustomCNN:
-    - Temperature: 0.658
-    - Uncalibrated Accuracy: 0.6980
-    - Calibrated Accuracy: 0.6980
-    - Uncalibrated Log-Loss: 0.8874
-    - Calibrated Log-Loss: 0.8300
-    - Uncalibrated F1: 0.6919
-    - Calibrated F1: 0.6919
-  - ResNet50:
-    - Temperature: 0.816
-    - Uncalibrated Accuracy: 0.8921
-    - Calibrated Accuracy: 0.8921
-    - Uncalibrated Log-Loss: 0.4058
-    - Calibrated Log-Loss: 0.3862
-    - Uncalibrated F1: 0.8887
-    - Calibrated F1: 0.8890
-
-- Per-class F1 scores (from full_report)
-  - CustomCNN:
-    - antelope_duiker: 0.503
-    - bird: 0.718
-    - blank: 0.459
-    - civet_genet: 0.856
-    - hog: 0.854
-    - leopard: 0.887
-    - monkey_prosimian: 0.664
-    - rodent: 0.700
-  - ResNet50:
-    - antelope_duiker: 0.813
-    - bird: 0.949
-    - blank: 0.684
-    - civet_genet: 0.958
-    - hog: 0.977
-    - leopard: 0.962
-    - monkey_prosimian: 0.914
-    - rodent: 0.917
-
-- Confusion matrices:
-  - CustomCNN confusion matrix: ![customcnn_confusion](artifacts/evaluation/customcnn/confusion_matrix.png)
-  - ResNet50 confusion matrix: ![resnet50_confusion](artifacts/evaluation/resnet50/confusion_matrix.png)
->>>>>>> 18eafb2 (updated README.md)
 
 ---
 
@@ -448,11 +374,7 @@ dataset.zip
 
 ## ❤️ Acknowledgements  
 
-<<<<<<< HEAD
 - The Pan African Programme: The Cultured Chimpanzee, Wild Chimpanzee Foundation, DrivenData. (2022). Conser-vision Practice Area: Image Classification. Retrieved [July 12 2025] from https://www.drivendata.org/competitions/87/competition-image-classification-wildlife-conservation/. 
-=======
-- [DrivenData Wildlife Conservation Competition](https://www.drivendata.org/competitions/87/competition-image-classification-wildlife-conservation/)  
->>>>>>> 18eafb2 (updated README.md)
 - Mentorship: **Sudhanshu Kumar (Euron)**  
 - Frameworks: PyTorch, Streamlit, MLflow, TorchCAM  
 
