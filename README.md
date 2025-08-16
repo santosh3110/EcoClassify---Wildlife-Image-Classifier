@@ -246,21 +246,20 @@ Tabs available:
   - **CustomCNN** (100 epochs)  
   - **ResNet50 (transfer learning)** (50 epochs)  
 
-### Results Summary  
+- Evaluation scope:
+  - Confusion matrix
+  - Classification report
+  - Calibration metrics (temperature scaling)
+  - **Artifacts** stored under artifacts/
 
-| Model      | Dataset     | Accuracy | Notes                     |
-|------------|-------------|----------|---------------------------|
-| CustomCNN  | Wildlife-8  | 69.8%    | Baseline model, 100 epochs|
-| ResNet50   | Wildlife-8  | 89.2%    | Fine-tuned, 50 epochs     |
-
-### Results Summary (from end-to-end evaluation JSON reports)
+### Results Summary
 
 | Model     | Temperature | Uncalibrated Accuracy | Calibrated Accuracy | Uncalibrated Precision | Calibrated Precision | Uncalibrated Recall | Calibrated Recall | Uncalibrated F1 | Calibrated F1 | Uncalibrated Log-Loss | Calibrated Log-Loss |
 |:----------|:-----------:|:---------------------:|:-------------------:|:----------------------:|:--------------------:|:--------------------:|:-------------------:|:----------------:|:----------------:|:----------------------:|:----------------------:|
 | CustomCNN | 0.66        | 0.70                  | 0.70                | 0.70                   | 0.70                 | 0.70                 | 0.70                | 0.69             | 0.69          | 0.89                   | 0.83                   |
 | ResNet50  | 0.82        | 0.89                  | 0.89                | 0.89                   | 0.89                 | 0.89                 | 0.89                | 0.89             | 0.89          | 0.41                   | 0.39                   |
 
-### Macro & Weighted Averages (from full_report)
+### Macro & Weighted Averages
 
 #### Macro Averages
 | Model     | Macro Precision | Macro Recall | Macro F1 |
@@ -274,7 +273,7 @@ Tabs available:
 | CustomCNN | 0.7021639180835437 | 0.6979987871437234 | 0.6919238501157194 |
 | ResNet50  | 0.8880514935264254 | 0.8920557913887205 | 0.8886539869936168 |
 
-### Per-class Metrics (from full_report)
+### Per-class Metrics
 
 #### CustomCNN
 | Class            | Precision | Recall | F1-score | Support |
@@ -306,50 +305,6 @@ Tabs available:
   - **Hyperparameters** are controlled via the params.yaml file (no hard-coded values)
 
 - Results tracked via ![**MLflow & DagsHub**](https://dagshub.com/santoshkumarguntupalli/EcoClassify---Wildlife-Image-Classifier/experiments)
-
-- Evaluation scope:
-  - Confusion matrix
-  - Classification report
-  - Calibration metrics (temperature scaling)
-  - **Artifacts** stored under artifacts/
-
-- Results summary (from end-to-end evaluation JSON reports)
-  - CustomCNN:
-    - Temperature: 0.658
-    - Uncalibrated Accuracy: 0.6980
-    - Calibrated Accuracy: 0.6980
-    - Uncalibrated Log-Loss: 0.8874
-    - Calibrated Log-Loss: 0.8300
-    - Uncalibrated F1: 0.6919
-    - Calibrated F1: 0.6919
-  - ResNet50:
-    - Temperature: 0.816
-    - Uncalibrated Accuracy: 0.8921
-    - Calibrated Accuracy: 0.8921
-    - Uncalibrated Log-Loss: 0.4058
-    - Calibrated Log-Loss: 0.3862
-    - Uncalibrated F1: 0.8887
-    - Calibrated F1: 0.8890
-
-- Per-class F1 scores (from full_report)
-  - CustomCNN:
-    - antelope_duiker: 0.503
-    - bird: 0.718
-    - blank: 0.459
-    - civet_genet: 0.856
-    - hog: 0.854
-    - leopard: 0.887
-    - monkey_prosimian: 0.664
-    - rodent: 0.700
-  - ResNet50:
-    - antelope_duiker: 0.813
-    - bird: 0.949
-    - blank: 0.684
-    - civet_genet: 0.958
-    - hog: 0.977
-    - leopard: 0.962
-    - monkey_prosimian: 0.914
-    - rodent: 0.917
 
 - Confusion matrices:
  
