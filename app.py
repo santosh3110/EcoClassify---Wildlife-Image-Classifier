@@ -185,62 +185,87 @@ with tabs[2]:
     uploaded_zip = st.file_uploader("Upload ZIP containing images", type=["zip"])
 
     if uploaded_csv and uploaded_zip:
-        
-        # Create a temp dir
-        temp_dir = tempfile.mkdtemp()
 
-        # Save and extract ZIP
-        zip_path = os.path.join(temp_dir, "images.zip")
-        with open(zip_path, "wb") as f:
-            f.write(uploaded_zip.read())
-        with zipfile.ZipFile(zip_path, 'r') as zip_ref:
-            zip_ref.extractall(temp_dir)
+        progress_bar = st.progress(0)
+        status_text = st.empty()
 
-        # Build map of filename -> actual extracted path
-        file_map = {}
-        for root, dirs, files in os.walk(temp_dir):
-            for f in files:
-                file_map[f] = os.path.join(root, f)
+        try:
+            status_text.text("📂 Preparing files...")
 
-        # Read CSV
-        df = pd.read_csv(uploaded_csv)
+            # Create a temp dir
+            temp_dir = tempfile.mkdtemp()
 
-        # Fix CSV paths to point to extracted folder
-        def fix_path(p):
-            filename = os.path.basename(p)
-            if filename in file_map:
-                return file_map[filename]
-            else:
-                raise FileNotFoundError(f"{filename} not found in uploaded ZIP.")
+            # Save and extract ZIP
+            zip_path = os.path.join(temp_dir, "images.zip")
+            with open(zip_path, "wb") as f:
+                f.write(uploaded_zip.read())
+            with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+                zip_ref.extractall(temp_dir)
 
-        df["filepath"] = df["filepath"].apply(fix_path)
+            progress_bar.progress(20)
+            status_text.text("✅ Images extracted")
 
-        # Save updated CSV in temp dir
-        temp_csv_path = os.path.join(temp_dir, "input.csv")
-        df.to_csv(temp_csv_path, index=False)
+            # Build map of filename -> actual extracted path
+            file_map = {}
+            for root, dirs, files in os.walk(temp_dir):
+                for f in files:
+                    file_map[f] = os.path.join(root, f)
 
-        # Config object for BatchInference
-        config_obj = type("Config", (object,), {
-            "root_dir": temp_dir,
-            "model_path": CONFIG["model_path"],
-            "label_mapping_path": CONFIG["label_mapping_path"],
-            "mean_std_path": CONFIG["mean_std_path"],
-            "test_csv": temp_csv_path,
-            "batch_size": 16,
-            "num_workers": 0
-        })()
+            # Read CSV
+            df = pd.read_csv(uploaded_csv)
+            progress_bar.progress(40)
+            status_text.text("📄 CSV loaded")
 
-        # Run inference
-        batch_inf = BatchInference(config_obj)
-        batch_inf.run()
+            # Fix CSV paths to point to extracted folder
+            def fix_path(p):
+                filename = os.path.basename(p)
+                if filename in file_map:
+                    return file_map[filename]
+                else:
+                    raise FileNotFoundError(f"{filename} not found in uploaded ZIP.")
 
-        # Show predictions
-        pred_path = os.path.join(temp_dir, "batch_predictions.csv")
-        if os.path.exists(pred_path):
-            st.success("✅ Predictions complete!")
-            st.dataframe(pd.read_csv(pred_path).head())
-            with open(pred_path, "rb") as f:
-                st.download_button("Download CSV", f, file_name="batch_predictions.csv")
+            df["filepath"] = df["filepath"].apply(fix_path)
+
+            # Save updated CSV in temp dir
+            temp_csv_path = os.path.join(temp_dir, "input.csv")
+            df.to_csv(temp_csv_path, index=False)
+
+            progress_bar.progress(60)
+            status_text.text("⚙️ Configuring batch inference...")
+
+            # Config object for BatchInference
+            config_obj = type("Config", (object,), {
+                "root_dir": temp_dir,
+                "model_path": CONFIG["model_path"],
+                "label_mapping_path": CONFIG["label_mapping_path"],
+                "mean_std_path": CONFIG["mean_std_path"],
+                "test_csv": temp_csv_path,
+                "batch_size": 16,
+                "num_workers": 0
+            })()
+
+            # Run inference
+            batch_inf = BatchInference(config_obj)
+            batch_inf.run()
+
+            progress_bar.progress(90)
+
+            # Show predictions
+            pred_path = os.path.join(temp_dir, "batch_predictions.csv")
+            if os.path.exists(pred_path):
+                progress_bar.progress(100)
+                status_text.text("✅ Inference complete!")
+                st.success("✅ Predictions complete!")
+                st.dataframe(pd.read_csv(pred_path).head())
+
+                with open(pred_path, "rb") as f:
+                    st.download_button("Download CSV", f, file_name="batch_predictions.csv")
+            
+        except Exception as e:
+            logger.exception(e)
+            st.error(f"Error during batch inference: {str(e)}")
+            status_text.text("❌ Error occurred. Please check logs.")
+            progress_bar.progress(0)
 
 # -------------------
 # TAB 4: FINE-TUNING
