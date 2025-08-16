@@ -169,16 +169,7 @@ with tabs[1]:
             plt_obj.savefig(buf, format="png", bbox_inches="tight")
             st.image(buf, caption="GradCAM Overlay", use_container_width=True)
             plt_obj.close()
-
-            # Display side-by-side result
-            # col1, col2 = st.columns(2)
-            # with col1:
-            #     st.image(image, caption="Original Image", use_container_width=True)
-            # with col2:
-            #     buf = io.BytesIO()
-            #     plt_obj.savefig(buf, format="png", bbox_inches="tight")
-            #     st.image(buf, caption="GradCAM Overlay", use_container_width=True)
-            #     plt_obj.close()
+            st.markdown("---") 
 
 # -------------------
 # TAB 3: BATCH INFERENCE
