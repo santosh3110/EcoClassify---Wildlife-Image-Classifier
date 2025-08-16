@@ -167,12 +167,12 @@ with tabs[1]:
             # Display side-by-side result
             col1, col2 = st.columns(2)
             with col1:
-                st.image(image, caption="Original Image", use_column_width=True)
+                st.image(image, caption="Original Image")
             with col2:
                 import io
                 buf = io.BytesIO()
                 plt_obj.savefig(buf, format="png", bbox_inches="tight")
-                st.image(buf, caption="GradCAM Overlay", use_column_width=True)
+                st.image(buf, caption="GradCAM Overlay")
                 plt_obj.close()
 
 # -------------------

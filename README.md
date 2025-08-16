@@ -242,7 +242,10 @@ python ecoclassify/pipelines/main.py
 
 ## 🖥️ Streamlit App  
 
-👉 Try EcoClassify directly without setup: [Live Demo on Hugging Face 🚀](https://huggingface.co/spaces/santosh3110/Ecoclassify-Wildlife_Classifier)
+👉 Try EcoClassify directly without setup: 
+- [Live Demo on Hugging Face ](https://huggingface.co/spaces/santosh3110/Ecoclassify-Wildlife_Classifier)
+- [Live Demo on Streamlit Cloud](https://ecoclassify---wildlife-image-classifier-ojyez7lpcmvjx25vmxr95c.streamlit.app/)
+
 
 Tabs available:  
 
