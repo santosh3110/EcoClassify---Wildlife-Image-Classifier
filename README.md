@@ -61,7 +61,7 @@ It includes **model explainability (Grad-CAM)**, **batch inference**, **fine-tun
 Camera traps capture **millions of images** in wildlife conservation projects. Manual classification is slow, error-prone, and not scalable.  
 
 **EcoClassify** provides:  
-- 🔬 Automated **species classification** (7+ classes + Blank).  
+- 🔬 Automated **species classification** (7 classes + Blank).  
 - 🖼️ **Explainability dashboard** (Grad-CAM heatmaps).  
 - ⚡ **Batch inference** for CSV/ZIP datasets.  
 - 🎛️ **Fine-tuning** interface for custom datasets.  
@@ -258,9 +258,7 @@ Tabs available:
     - ResNet50 Training Chart: ![resnet50_training.png](resnet50_training.png)
   - **Hyperparameters** are controlled via the params.yaml file (no hard-coded values)
 
-- Results tracked via **MLflow & DagsHub**  
-  - Dagshub Experiments: https://dagshub.com/santoshkumarguntupalli/EcoClassify---Wildlife-Image-Classifier/experiments
-  - MLflow (Dagshub): https://dagshub.com/santoshkumarguntupalli/EcoClassify---Wildlife-Image-Classifier.mlflow/#/experiments/0?searchFilter=&orderByKey=attributes.start_time&orderByAsc=false&startTime=ALL&lifecycleFilter=Active&modelVersionFilter=All+Runs&datasetsFilter=W10%3D
+- Results tracked via ![**MLflow & DagsHub**](https://dagshub.com/santoshkumarguntupalli/EcoClassify---Wildlife-Image-Classifier/experiments)
 
 - Evaluation scope:
   - Confusion matrix
@@ -307,8 +305,10 @@ Tabs available:
     - rodent: 0.917
 
 - Confusion matrices:
-  - CustomCNN confusion matrix: ![customcnn_confusion](artifacts/evaluation/customcnn/confusion_matrix.png)
-  - ResNet50 confusion matrix: ![resnet50_confusion](artifacts/evaluation/resnet50/confusion_matrix.png)
+ 
+  | CustomCNN confusion matrix| ResNet50 confusion matrix |
+|---------------------------|--------------------------|
+| ![customcnn_confusion](artifacts/evaluation/customcnn/confusion_matrix.png) | ![resnet50_confusion](artifacts/evaluation/resnet50/confusion_matrix.png)|  
 
 ---
 
