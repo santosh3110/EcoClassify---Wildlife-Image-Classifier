@@ -95,7 +95,7 @@ with tabs[0]:
 
     ---
     ### 🚀 What it does
-    1. **Classifies wildlife images** into 8 wildlife specieseight categories — Antelope_Duiker, Bird, Civet_Genet, Hog, Leopard, Monkey_Prosimian, Rodent, 
+    1. **Classifies wildlife images** into 8 wildlife species — Antelope_Duiker, Bird, Civet_Genet, Hog, Leopard, Monkey_Prosimian, Rodent, 
                 and yes… it can even recognize when there’s nothing there at all — just Blank 🙈.
     2. Uses **transfer learning with ResNet50** for strong, accurate predictions.
     3. **Explains predictions** with Grad-CAM heatmaps — so you can *see what the model sees*.
