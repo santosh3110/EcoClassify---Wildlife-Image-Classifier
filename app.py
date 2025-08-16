@@ -1,4 +1,5 @@
 import os 
+import io
 import json
 import sys
 import tempfile
@@ -164,16 +165,20 @@ with tabs[1]:
             heatmap, _ = explainer.gradcam(model, img_tensor, CONFIG["gradcam_target_layer"])
             plt_obj = explainer.create_side_by_side(image, heatmap, pred_class, "Unknown")
 
+            buf = io.BytesIO()
+            plt_obj.savefig(buf, format="png", bbox_inches="tight")
+            st.image(buf, caption="GradCAM Overlay", use_container_width=True)
+            plt_obj.close()
+
             # Display side-by-side result
-            col1, col2 = st.columns(2)
-            with col1:
-                st.image(image, caption="Original Image", use_container_width=True)
-            with col2:
-                import io
-                buf = io.BytesIO()
-                plt_obj.savefig(buf, format="png", bbox_inches="tight")
-                st.image(buf, caption="GradCAM Overlay", use_container_width=True)
-                plt_obj.close()
+            # col1, col2 = st.columns(2)
+            # with col1:
+            #     st.image(image, caption="Original Image", use_container_width=True)
+            # with col2:
+            #     buf = io.BytesIO()
+            #     plt_obj.savefig(buf, format="png", bbox_inches="tight")
+            #     st.image(buf, caption="GradCAM Overlay", use_container_width=True)
+            #     plt_obj.close()
 
 # -------------------
 # TAB 3: BATCH INFERENCE
