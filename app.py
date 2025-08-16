@@ -90,7 +90,7 @@ with tabs[0]:
 
     **EcoClassify - Wildlife Image Classifier** was born out of the need to **help researchers, educators, and nature lovers** 
     quickly identify species captured in camera trap images — without needing to be a machine learning wizard.
-    This project was developed as part of my internship at **[Euron](https://euron.one/)**, with heartfelt thanks to **Sudhanshu Kumar**, CEO of Euron, for his guidance and support.
+    This project was developed as part of my internship at **[Euron](https://euron.one/)**, with heartfelt thanks to **Sudhanshu Kumar**, Director of Euron, for his guidance and support.
 
     ---
     ### 🚀 What it does

@@ -18,7 +18,10 @@ pinned: false
 
 > **AI-powered wildlife conservation.**  
 EcoClassify is an **end-to-end computer vision project** that classifies camera trap images into wildlife species using **transfer learning (ResNet50).**  
-It includes **model explainability (Grad-CAM)**, **batch inference**, **fine-tuning via Streamlit UI**, and **MLflow/DagsHub integration** for experiment tracking. It was born out of the need to help researchers, educators, and nature lovers quickly identify species without needing to be a machine learning wizard. This project was developed as part of my internship at **Euron**, with heartfelt thanks to **Sudhanshu Kumar, CEO of Euron,** for his guidance and mentorship.
+It includes **model explainability (Grad-CAM)**, **batch inference**, **fine-tuning via Streamlit UI**, and **MLflow/DagsHub integration** for experiment tracking. It was born out of the need to help researchers, educators, and nature lovers quickly identify species without needing to be a machine learning wizard. This project was developed as part of my internship at **Euron**, with heartfelt thanks to **Sudhanshu Kumar, Director of Euron,** for his guidance and mentorship.
+
+🔗 **Live Demo on Streamlit Cloud**:  
+[![Streamlit App](https://img.shields.io/badge/Launch%20App-Streamlit-brightgreen?logo=streamlit)](https://ecoclassify---wildlife-image-classifier-ojyez7lpcmvjx25vmxr95c.streamlit.app/)
 
 🔗 **Live Demo on Hugging Face**: [![Hugging Face Spaces](https://img.shields.io/badge/Launch%20App-HuggingFace-orange?logo=huggingface)](https://huggingface.co/spaces/santosh3110/Ecoclassify-Wildlife_Classifier)
 
