@@ -189,9 +189,9 @@ EcoClassify---Wildlife-Image-Classifier/
 
 ## 📚 Dataset  
 
-- **Source**: [DrivenData – Wildlife Camera Traps](https://www.drivendata.org/competitions/87/competition-image-classification-wildlife-conservation/)  
+- **Source**: Conser-vision Practice Area: Image Classification by drivendata.org
 - **Provided by**:  
-  *Pan African Programme: The Cultured Chimpanzee, Wild Chimpanzee Foundation*  
+  *The Pan African Programme: The Cultured Chimpanzee, Wild Chimpanzee Foundation, DrivenData. (2022). Conser-vision Practice Area: Image Classification. Retrieved [July 12 2025] from https://www.drivendata.org/competitions/87/competition-image-classification-wildlife-conservation/.*  
 
 ---
 
@@ -373,7 +373,7 @@ dataset.zip
 
 ## ❤️ Acknowledgements  
 
-- [DrivenData Wildlife Conservation Competition](https://www.drivendata.org/competitions/87/competition-image-classification-wildlife-conservation/)  
+- The Pan African Programme: The Cultured Chimpanzee, Wild Chimpanzee Foundation, DrivenData. (2022). Conser-vision Practice Area: Image Classification. Retrieved [July 12 2025] from https://www.drivendata.org/competitions/87/competition-image-classification-wildlife-conservation/. 
 - Mentorship: **Sudhanshu Kumar (Euron)**  
 - Frameworks: PyTorch, Streamlit, MLflow, TorchCAM  
 
