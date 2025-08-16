@@ -294,10 +294,9 @@ Tabs available:
 | monkey_prosimian | 0.90      | 0.93   | 0.91     | 498.00  |
 | rodent           | 0.89      | 0.95   | 0.92     | 403.00  |
 
-  - Training visuals:
-    - CustomCNN Training Chart: ![customcnn_training.png](customcnn_training.png)
-    - ResNet50 Training Chart: ![resnet50_training.png](resnet50_training.png)
-  - **Hyperparameters** are controlled via the params.yaml file (no hard-coded values)
+- Training visuals:
+- CustomCNN Training Chart: ![customcnn_training.png](customcnn_training.png)
+- ResNet50 Training Chart: ![resnet50_training.png](resnet50_training.png)
 
 - Results tracked via ![**MLflow & DagsHub**](https://dagshub.com/santoshkumarguntupalli/EcoClassify---Wildlife-Image-Classifier/experiments)
 
