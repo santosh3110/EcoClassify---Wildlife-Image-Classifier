@@ -129,7 +129,7 @@ with tabs[0]:
     ---
 
     ---
-    **Made with ❤️ for nature & technology by Santosh Kumar Guntupalli.**  
+    **Made with ❤️ for Wildlife & AI by Santosh Kumar Guntupalli.**  
     _Let’s help protect the wild._
     """)
 
